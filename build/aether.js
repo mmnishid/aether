@@ -60,6 +60,7 @@
     };
 
     function Aether(options) {
+      console.log("MMN AetherLib Aether");
       var defaultsCopy, validationResults;
       if (options == null) {
         options = {};
@@ -85,6 +86,7 @@
     }
 
     Aether.prototype.setLanguage = function(language) {
+      console.log("MMN AetherLib setLanguage");
       var validationResults;
       if (this.language && this.language.id === language) {
         return;
@@ -105,6 +107,7 @@
     };
 
     Aether.prototype.reset = function() {
+      console.log("MMN AetherLib reset");
       this.problems = {
         errors: [],
         warnings: [],
@@ -149,6 +152,7 @@
     };
 
     Aether.prototype.hasChangedSignificantly = function(a, b, careAboutLineNumbers, careAboutLint) {
+      console.log("MMN AetherLib hasChangedSignificantly");
       if (careAboutLineNumbers == null) {
         careAboutLineNumbers = false;
       }
@@ -171,6 +175,7 @@
     };
 
     Aether.prototype.hasChangedLintProblems = function(a, b) {
+      console.log("MMN AetherLib hasChangedLintProblems");
       var aLintProblems, bLintProblems, p;
       aLintProblems = (function() {
         var _i, _len, _ref3, _results;
@@ -200,6 +205,7 @@
     };
 
     Aether.prototype.transpile = function(raw) {
+      console.log("MMN AetherLib transpile");
       var rawCode;
       this.raw = raw;
       this.reset();
@@ -233,6 +239,7 @@
     };
 
     Aether.prototype.run = function() {
+      console.log("MMN AetherLib run");
       var args, error, fn, problem;
       fn = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
       try {
