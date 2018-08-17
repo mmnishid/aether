@@ -59,6 +59,7 @@ module.exports = class Aether
 
   # Language can be changed after construction. (It will reset Aether's state.)
   setLanguage: (language) ->
+    console.log "MMN aether.coffee setLanguage"
     return if @language and @language.id is language
     validationResults = optionsValidator language: language
     unless validationResults.valid
@@ -71,6 +72,7 @@ module.exports = class Aether
 
   # Resets the state of Aether, readying it for a fresh transpile.
   reset: ->
+    console.log "MMN aether.coffee reset"
     @problems = errors: [], warnings: [], infos: []
     @style = {}
     @flow = {}
@@ -79,10 +81,12 @@ module.exports = class Aether
 
   # Convert to JSON so we can pass it across web workers and HTTP requests and store it in databases and such.
   serialize: ->
+    console.log "MMN aether.coffee serialize"
     _.pick @, ['originalOptions', 'raw', 'pure', 'problems', 'flow', 'metrics', 'style', 'ast']
 
   # Convert a serialized Aether instance back from JSON.
   @deserialize: (serialized) ->
+    console.log "MMN aether.coffee deserialize"
     aether = new Aether serialized.originalOptions
     aether[prop] = val for prop, val of serialized when prop isnt "originalOptions"
     aether
@@ -118,6 +122,7 @@ module.exports = class Aether
 
   # Transpile it. Even if it can't transpile, it will give syntax errors and warnings and such. Clears any old state.
   transpile: (@raw) ->
+    console.log "MMN aether.coffee transpile"
     @reset()
     rawCode = @raw
     @problems = @lint rawCode
@@ -140,6 +145,7 @@ module.exports = class Aether
 
   # Convenience wrapper for running the compiled function with default error handling
   run: (fn, args...) ->
+    console.log "MMN aether.coffee run"
     try
       fn ?= @createFunction()
     catch error
